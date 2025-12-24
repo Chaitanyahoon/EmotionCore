@@ -1,0 +1,14 @@
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\bin\Debug\net6.0\EmotionCoreSim.exe
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\bin\Debug\net6.0\EmotionCoreSim.deps.json
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\bin\Debug\net6.0\EmotionCoreSim.runtimeconfig.json
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\bin\Debug\net6.0\EmotionCoreSim.dll
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\bin\Debug\net6.0\EmotionCoreSim.pdb
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\obj\Debug\net6.0\EmotionCoreSim.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\obj\Debug\net6.0\EmotionCoreSim.AssemblyInfoInputs.cache
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\obj\Debug\net6.0\EmotionCoreSim.AssemblyInfo.cs
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\obj\Debug\net6.0\EmotionCoreSim.csproj.CoreCompileInputs.cache
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\obj\Debug\net6.0\EmotionCoreSim.dll
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\obj\Debug\net6.0\refint\EmotionCoreSim.dll
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\obj\Debug\net6.0\EmotionCoreSim.pdb
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\obj\Debug\net6.0\EmotionCoreSim.genruntimeconfig.cache
+C:\Users\CDAC\Desktop\Chaitanya\pysch\Simulation\obj\Debug\net6.0\ref\EmotionCoreSim.dll

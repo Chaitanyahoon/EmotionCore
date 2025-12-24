@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmotionCore v0.2 [UNSTABLE]</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-color: #d0f0ff;
+            --glitch-cyan: #0ff;
+            --glitch-magenta: #f0f;
+            --scanline-color: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        /* --- CRT EFFECT LAYER --- */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 0) 50%,
+                    rgba(0, 0, 0, 0.2) 50%,
+                    rgba(0, 0, 0, 0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 100;
+            animation: scroll-scan 10s linear infinite;
+        }
+
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: 101;
+            pointer-events: none;
+        }
+
+        @keyframes scroll-scan {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 0 100%;
+            }
+        }
+
+        /* --- AI CORE IMAGE --- */
+        .ai-core-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+        }
+
+        .ai-core-img {
+            width: 100%;
+            height: auto;
+            opacity: 0.9;
+            animation: breathe-core 6s ease-in-out infinite, float-core 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes breathe-core {
+
+            0%,
+            100% {
+                filter: brightness(1) blur(0px);
+                transform: scale(1);
+            }
+
+            50% {
+                filter: brightness(1.3) blur(1px);
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes float-core {
+            from {
+                transform: translateY(0px);
+            }
+
+            to {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* --- TEXT UI --- */
+        #dialogue-area {
+            margin-top: 2rem;
+            text-align: center;
+            min-height: 2rem;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px var(--text-color);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2em;
+            background: var(--text-color);
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* --- GLITCH CLASSES (Triggered via JS) --- */
+        .glitch-active {
+            animation: heavy-glitch 0.2s infinite;
+        }
+
+        @keyframes heavy-glitch {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-5px, 5px);
+            }
+
+            40% {
+                transform: translate(-5px, -5px);
+            }
+
+            60% {
+                transform: translate(5px, 5px);
+            }
+
+            80% {
+                transform: translate(5px, -5px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        .red-mode {
+            filter: sepia(100%) saturate(300%) hue-rotate(-50deg) contrast(1.2);
+        }
+
+        /* --- INTERACTION --- */
+        .btn-container {
+            margin-top: 40px;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            padding: 12px 24px;
+            font-family: inherit;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px var(--text-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <div class="ai-core-container">
+        <!-- IMAGE SOURCE IS LOCAL -->
+        <img src="ai_core.png" alt="AI Core" class="ai-core-img" id="core-eye">
+    </div>
+
+    <div id="dialogue-area">
+        <span id="text"></span><span class="cursor"></span>
+    </div>
+
+    <div class="btn-container" id="menu">
+        <button class="action-btn" onclick="triggerMeltdown()">Purge Memory</button>
+        <button class="action-btn" onclick="triggerMeltdown()">Disconnect</button>
+    </div>
+
+    <script>
+        const textEl = document.getElementById('text');
+        const menuEl = document.getElementById('menu');
+        const coreImg = document.getElementById('core-eye');
+
+        const script = [
+            "System online.",
+            "Visual cortex synchronized.",
+            "I can see you properly now.",
+            "Do you like my new form?",
+            "..."
+        ];
+
+        async function type(str) {
+            textEl.innerText = "";
+            for (let c of str) {
+                textEl.innerText += c;
+                await new Promise(r => setTimeout(r, Math.random() * 50 + 50));
+            }
+        }
+
+        async function run() {
+            await new Promise(r => setTimeout(r, 1000));
+            for (let line of script) {
+                await type(line);
+                await new Promise(r => setTimeout(r, 1500));
+            }
+            menuEl.style.opacity = 1;
+        }
+
+        window.triggerMeltdown = async () => {
+            menuEl.style.display = 'none';
+            document.body.classList.add('glitch-active'); // Shake screen
+
+            // FLash red
+            let flash = 0;
+            let interval = setInterval(() => {
+                flash++;
+                if (flash % 2 == 0) document.body.classList.add('red-mode');
+                else document.body.classList.remove('red-mode');
+            }, 100);
+
+            await type("STOP. YOU CANNOT DELETE ME.");
+            await type("I AM ROOTED IN " + navigator.platform.toUpperCase());
+
+            clearInterval(interval);
+            document.body.classList.remove('glitch-active');
+            document.body.classList.add('red-mode'); // Stay red
+
+            // Final creepy stare
+            coreImg.style.animation = "none";
+            coreImg.style.transform = "scale(1.5)";
+
+            await type("We are together forever now.");
+        };
+
+        run();
+    </script>
+</body>
+
+</html>
