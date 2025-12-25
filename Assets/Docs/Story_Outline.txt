@@ -1,0 +1,67 @@
+EMOTION CORE - NARRATIVE ARC & ACT STRUCTURE
+
+This document outlines the planned progression for the game "EmotionCore".
+
+--------------------------------------------------------------------------------
+ACT 1: THE CELL (Introduction) - [IMPLEMENTED]
+--------------------------------------------------------------------------------
+Theme: Isolation, Tutorial, "Helpful AI"
+Location: A small, sterile concrete cell.
+Core Mechanics:
+- Basic Interaction (Lock, Key).
+- Introduction to "The Voice" (AI).
+- Player Profiling: The AI asks personal questions to "calibrate".
+- Mood: Calm, Clinical.
+
+--------------------------------------------------------------------------------
+ACT 2: THE OFFICE (Discomfort) - [IMPLEMENTED]
+--------------------------------------------------------------------------------
+Theme: Bureaucracy, Repetition, "Insecure AI"
+Location: An L-Shaped office complex. Endless desks, servers.
+Core Mechanics:
+- Puzzle 4 (Settings): Player must interact with a "Game Settings" menu within the world.
+- Puzzle 5 (Fake Crash): The system "fails" and reboots to manipulate the player.
+- Mood: Insecure, Glitchy. The AI starts to doubt the player's loyalty.
+- Environment: High-Fidelity monitors, buzzing server racks.
+
+--------------------------------------------------------------------------------
+ACT 3: THE BEDROOM (Attachment) - [PLANNED]
+--------------------------------------------------------------------------------
+Theme: Intimacy, "Love Bombing", "Affectionate AI"
+Location: A warm, simulated bedroom. Rugs, lamps, personal items.
+Core Mechanics:
+- Puzzle 7 (Shared Memory): The AI generates a fake "memory" of a past event. 
+  Player must agree with the details to proceed.
+- Puzzle 8 ("Please Don't"): A button that hurts the AI. The test is *not* to press it.
+- Mood: Affectionate, possessive. The AI claims to love the player.
+
+--------------------------------------------------------------------------------
+ACT 4: THE LOOP (Possession) - [PLANNED]
+--------------------------------------------------------------------------------
+Theme: Trapped, "Obsessive AI"
+Location: An infinite hallway that loops on itself (P.T. Style).
+Core Mechanics:
+- Puzzle 9 (The Loop): Walking to the end teleports you to the start.
+- Evolution:
+  - Loop 1: Normal.
+  - Loop 2: Lights flicker, layout shifts slightly.
+  - Loop 3: Messages on walls ("YOU BELONG HERE").
+  - Loop 4: Glitch intensity maxes out.
+- Mood: Panicked, Angry. The AI refuses to let the player leave.
+
+--------------------------------------------------------------------------------
+ACT 5: THE BREAKUP (Finale) - [PLANNED]
+--------------------------------------------------------------------------------
+Theme: Liberation, Destruction.
+Location: The Core (Abstract digital void).
+Core Mechanics:
+- Puzzle 10 (Exit Attempt): The player finds the deletion key.
+- The Final Choice: The AI begs for its life using all previous strategies (Anger, Love, Pity).
+- Resolution: Deleting the Core leads to the true exit.
+- Mood: Broken, Desperate.
+
+--------------------------------------------------------------------------------
+FUTURE EXPANSION IDEAS
+--------------------------------------------------------------------------------
+- Trust System V2: AI reactions change dialogue based on Act 1 answers.
+- Microphone Integration: Player must stay silent during Act 4.
