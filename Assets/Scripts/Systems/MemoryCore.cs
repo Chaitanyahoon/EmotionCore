@@ -82,6 +82,13 @@ namespace EmotionCore.Systems
             return 0;
         }
 
+        public void SetMemory(string key, string value) => SetValue(key, value);
+        public string GetMemory(string key) 
+        {
+            if (_memoryStore.TryGetValue(key, out string val)) return val;
+            return null;
+        }
+
         private void SetValue(string key, string value)
         {
             if (_memoryStore.ContainsKey(key))

@@ -9,9 +9,11 @@ namespace EmotionCore.UI
     {
         public static UIControlManager Instance { get; private set; }
 
-        [Header("HUD Elements")]
         public TextMeshProUGUI DialogueText;
+        public TextMeshProUGUI InteractionPromptText;
+
         public CanvasGroup FakeOSLayer;
+        public EmotionCore.Visuals.GlitchController GlitchFX;
         
         [Header("Settings")]
         public float TextTypingSpeed = 0.05f;
@@ -49,7 +51,10 @@ namespace EmotionCore.UI
 
         public void TriggerGlitchEffect(float intensity)
         {
-            // TODO: Implement UI glitch shader parameters here
+            if (GlitchFX != null)
+            {
+                GlitchFX.TriggerBurst(intensity, 0.5f);
+            }
             Debug.Log($"[UI] Glitch Intensity: {intensity}");
         }
 
@@ -60,6 +65,23 @@ namespace EmotionCore.UI
                 FakeOSLayer.alpha = show ? 1f : 0f;
                 FakeOSLayer.interactable = show;
                 FakeOSLayer.blocksRaycasts = show;
+            }
+        }
+
+        public void ShowInteractionPrompt(string message)
+        {
+            if (InteractionPromptText != null)
+            {
+                InteractionPromptText.text = message;
+                InteractionPromptText.gameObject.SetActive(true);
+            }
+        }
+
+        public void HideInteractionPrompt()
+        {
+            if (InteractionPromptText != null)
+            {
+                InteractionPromptText.gameObject.SetActive(false);
             }
         }
     }

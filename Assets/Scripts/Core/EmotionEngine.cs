@@ -14,6 +14,7 @@ namespace EmotionCore.Core
             Affectionate, // "Warm" attachment
             Insecure,   // Doubting player loyalty
             Possessive, // Controlling, "safe" logic
+            Panicked,   // Highly unstable, fearful
             Desperate,  // Begging, panic
             Broken      // Glitched, corrupted
         }
@@ -90,11 +91,37 @@ namespace EmotionCore.Core
             }
         }
 
+        private FX.GlitchEffect glitchFX;
+
         private void ApplyEmotionalEffects()
         {
-            // Hook into Audio and Visual systems here
+            if (glitchFX == null && Camera.main != null)
+                glitchFX = Camera.main.GetComponent<FX.GlitchEffect>();
+
+            if (glitchFX != null)
+            {
+                // Map Emotion to Glitch Intensity
+                float targetGlitch = 0f;
+                float colorSplit = 0f;
+
+                switch (CurrentEmotion)
+                {
+                    case EmotionState.Calm: targetGlitch = 0; break;
+                    case EmotionState.Playful: targetGlitch = 0; break;
+                    case EmotionState.Affectionate: targetGlitch = 0; break;
+                    case EmotionState.Insecure: targetGlitch = 0.1f; colorSplit = 0.2f; break;
+                    case EmotionState.Possessive: targetGlitch = 0.3f; colorSplit = 0.5f; break;
+                    case EmotionState.Panicked: targetGlitch = 0.6f; colorSplit = 0.8f; break;
+                    case EmotionState.Desperate: targetGlitch = 0.8f; colorSplit = 1.0f; break;
+                    case EmotionState.Broken: targetGlitch = 1.0f; colorSplit = 2.0f; break;
+                }
+
+                glitchFX.intensity = targetGlitch * EmotionalIntensity; // Modulate by intensity
+                glitchFX.colorSplit = colorSplit;
+            }
+
+            // Hook into Audio system here
             // e.g., AudioController.SetPitch(CurrentEmotion);
-            // e.g., PostProcessingManager.SetDistortion(EmotionalIntensity);
             
             // Phase 2: Signal the UI Manager
             if (UI.UIControlManager.Instance != null)

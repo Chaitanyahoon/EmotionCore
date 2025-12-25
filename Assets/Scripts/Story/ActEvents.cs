@@ -29,6 +29,7 @@ namespace EmotionCore.Story
         {
             EmotionEngine.Instance.SetEmotion(EmotionEngine.EmotionState.Playful, 0.3f);
             UIControlManager.Instance.ShowDialogue("See? We're good at this.");
+            yield return null;
         }
 
         // --- ACT 2: DISCOMFORT ---
